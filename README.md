@@ -2,7 +2,7 @@
 
 Плашка «что сейчас играет» для OBS и автопауза под заказы Trula. Windows 10 и 11, архив меньше 1 МБ, бесплатно.
 
-**[⬇ Скачать NowPlaying.zip](https://github.com/aliveenjoyer/now-playing/releases/latest/download/NowPlaying.zip)** · [Что нового](https://github.com/aliveenjoyer/now-playing/releases) · [Другие проекты](https://aliveenjoyer.art)
+**[⬇ Скачать NowPlaying.zip](https://github.com/aliveenjoyer/now-playing/releases/latest/download/NowPlaying.zip)** · [Сайт](https://nowplaying.aliveenjoyer.art) · [Что нового](https://github.com/aliveenjoyer/now-playing/releases) · [Другие проекты](https://aliveenjoyer.art)
 
 ![Все стили плашки с одной песней поверх кадра Deadlock, в том же месте и масштабе, что в OBS](docs/styles.jpg)
 
