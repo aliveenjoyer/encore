@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Now Playing: плашка «что играет» для OBS и автопауза под заказы</title>
-<meta name="description" content="Now Playing показывает на стриме, что играет, в одном из 11 стилей и ставит твою музыку на паузу, пока звучит заказ зрителя. Бесплатно, Windows 10 и 11, меньше 1 МБ.">
+<title>Encore: плашка «что играет» для OBS и автопауза под заказы</title>
+<meta name="description" content="Encore показывает на стриме, что играет, в одном из 11 стилей и ставит твою музыку на паузу, пока звучит заказ зрителя. Бесплатно, Windows 10 и 11, меньше 1 МБ.">
 <meta name="theme-color" content="#000000">
-<meta property="og:title" content="Now Playing: музыка сама знает, когда помолчать">
+<meta property="og:title" content="Encore: музыка сама знает, когда помолчать">
 <meta property="og:description" content="Плашка «что играет» для OBS в 11 стилях и автопауза под заказы зрителей. Бесплатно.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://nowplaying.aliveenjoyer.art/">
-<meta property="og:image" content="https://nowplaying.aliveenjoyer.art/assets/og.jpg">
+<meta property="og:url" content="https://encore.aliveenjoyer.art/">
+<meta property="og:image" content="https://encore.aliveenjoyer.art/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/icon-64.png">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* the look of aliveenjoyer.art (Hub): black, Geist, one glass object, the project's own colour (pink for Now Playing) */
+/* the look of aliveenjoyer.art (Hub): black, Geist, one glass object, the project's own colour (pink for Encore) */
 :root {
   --bg: #000;
   --tile: #0a0a0b;
@@ -209,7 +209,7 @@ section { scroll-margin-top: 72px; }
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="./"><img src="assets/icon-64.png" alt="" width="22" height="22">Now Playing <small>от aliveenjoyer</small></a>
+    <a class="brand" href="./"><img src="assets/icon-64.png" alt="" width="22" height="22">Encore <small>от aliveenjoyer</small></a>
     <nav class="nav-links" aria-label="Разделы">
       <a href="#styles">Стили</a>
       <a href="#orders">Заказы</a>
@@ -268,7 +268,7 @@ section { scroll-margin-top: 72px; }
       <div class="tile soon">
         <span class="badge">Скоро</span>
         <h3>Заказ треков за баллы канала</h3>
-        <p>Без Trula и без донатов. Зритель пишет название или кидает ссылку, трек играет прямо из Now Playing.</p>
+        <p>Без Trula и без донатов. Encore сама заводит на Twitch награду «Заказать трек»: зритель пишет название или кидает ссылку, трек играет прямо из Encore.</p>
         <ul class="facts">
           <li>YouTube, YouTube Music, Spotify, SoundCloud или просто название</li>
           <li>Ты задаёшь лимиты: длина трека, минимум просмотров, треков от одного зрителя</li>
@@ -283,7 +283,7 @@ section { scroll-margin-top: 72px; }
       <h2 id="h-settings">Все настройки на одном экране.</h2>
       <p>Стиль, Trula, автопауза, говорящая вебка и обновления. Ничего не надо искать по вкладкам.</p>
     </div>
-    <div class="tile shot"><img src="assets/settings.webp" width="1366" height="657" alt="Окно настроек Now Playing: предпросмотр плашки, стили, Trula, автопауза, вебка и система" loading="lazy"></div>
+    <div class="tile shot"><img src="assets/settings.webp" width="1366" height="657" alt="Окно настроек Encore: предпросмотр плашки, стили, Trula, автопауза, вебка и система" loading="lazy"></div>
     <ul class="trio">
       <li><b>Обновляется сама</b><span>Новая версия ставится в тишине между треками. Плашка в OBS перезагружается сама.</span></li>
       <li><b>Всё на твоём компьютере</b><span>Работает на localhost. Токен Trula хранится только у тебя.</span></li>
@@ -297,7 +297,7 @@ section { scroll-margin-top: 72px; }
     </div>
     <div class="tile install">
       <ol class="steps">
-        <li><div><b>Скачай и запусти</b><span>Распакуй папку «Now Playing» целиком и запусти <code>Now Playing.exe</code>. Если Windows ругается, «Подробнее» → «Выполнить в любом случае».</span></div></li>
+        <li><div><b>Скачай и запусти</b><span>Распакуй папку из архива целиком и запусти программу. Если Windows ругается, «Подробнее» → «Выполнить в любом случае».</span></div></li>
         <li><div><b>Вставь ссылку Trula и выбери стиль</b><span>Настройки откроются сами. Ссылку на виджет «Заказ музыки» берёшь из OBS.</span></div></li>
         <li><div><b>Добавь плашку в OBS</b><span>Источник «Браузер», ширина 720, высота 96:</span>
           <span class="url"><code id="obsUrl">http://localhost:7790/bar</code><button class="copy" type="button" data-copy="obsUrl">Скопировать</button></span></div></li>
@@ -320,7 +320,7 @@ section { scroll-margin-top: 72px; }
     </div>
   </div>
   <div class="fine">
-    <span>Now Playing бесплатна. Trula, YouTube, Spotify, SoundCloud и OBS принадлежат своим владельцам, программа с ними не связана.</span>
+    <span>Encore бесплатна, раньше называлась Now Playing. Trula, YouTube, Spotify, SoundCloud и OBS принадлежат своим владельцам, программа с ними не связана.</span>
     <a href="https://github.com/aliveenjoyer/now-playing">GitHub</a>
   </div>
 </footer>
