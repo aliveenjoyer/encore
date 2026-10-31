@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Encore: плашка «что играет» для OBS и автопауза под заказы</title>
-<meta name="description" content="Encore показывает на стриме, что играет, в одном из 11 стилей и ставит твою музыку на паузу, пока звучит заказ зрителя. Бесплатно, Windows 10 и 11, меньше 1 МБ.">
+<title>Encore: заказ треков за баллы и плашка «что играет» для OBS</title>
+<meta name="description" content="Encore принимает заказы треков за баллы канала Twitch, показывает на стриме, что играет, в одном из 11 стилей и ставит твою музыку на паузу, пока звучит заказ. Бесплатно, Windows 10 и 11, меньше 1 МБ.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="Encore: музыка сама знает, когда помолчать">
-<meta property="og:description" content="Плашка «что играет» для OBS в 11 стилях и автопауза под заказы зрителей. Бесплатно.">
+<meta property="og:description" content="Заказ треков за баллы канала, плашка «что играет» для OBS в 11 стилях и автопауза. Бесплатно.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://encore.aliveenjoyer.art/">
 <meta property="og:image" content="https://encore.aliveenjoyer.art/assets/og.jpg">
@@ -157,17 +157,27 @@ section { scroll-margin-top: 72px; }
 
 /* orders */
 .split { margin-top: 32px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 20px; }
-.flow { padding: clamp(24px, 3.5vw, 40px); }
+.flow { padding: clamp(24px, 3.5vw, 40px); display: flex; flex-direction: column; }
+.onbar { margin: auto 0 0; padding-top: 32px; }
+.onbar img { width: 100%; max-width: 480px; filter: drop-shadow(0 12px 30px rgba(0, 0, 0, .6)); }
+.onbar figcaption { margin-top: 12px; font-size: 13px; color: var(--gray); }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; counter-reset: s; }
 .steps li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; }
 .steps li::before { counter-increment: s; content: counter(s); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
   font-weight: 600; color: var(--pink); background: rgba(255, 126, 182, .1); border: 1px solid rgba(255, 126, 182, .3); }
 .steps b { display: block; font-weight: 600; font-size: 17px; letter-spacing: -.01em; }
 .steps span { display: block; margin-top: 2px; color: var(--gray-2); font-size: 15px; line-height: 1.45; }
-.soon { padding: clamp(24px, 3.5vw, 40px); --c: #a78bfa; }
+.points { padding: clamp(24px, 3.5vw, 40px); --c: #a78bfa; }
 .badge { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .02em; color: #120a24; background: #a78bfa; padding: 3px 10px; border-radius: 999px; }
-.soon h3 { margin: 14px 0 0; font-weight: 600; font-size: 24px; letter-spacing: -.02em; line-height: 1.15; }
-.soon p { margin: 10px 0 0; color: var(--gray-2); font-size: 15px; line-height: 1.5; }
+.points h3 { margin: 14px 0 0; font-weight: 600; font-size: 24px; letter-spacing: -.02em; line-height: 1.15; }
+.points p { margin: 10px 0 0; color: var(--gray-2); font-size: 15px; line-height: 1.5; }
+/* the two rewards Encore puts on the channel */
+.rewards { display: grid; gap: 8px; margin-top: 18px; }
+.rw { display: flex; align-items: center; gap: 12px; padding: 10px 12px 10px 10px; border-radius: 14px; background: rgba(167, 139, 250, .07); border: 1px solid rgba(167, 139, 250, .22); }
+.rw i { flex: none; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: rgba(167, 139, 250, .16); color: #c4b5fd; }
+.rw i svg { width: 18px; height: 18px; }
+.rw span { flex: 1; min-width: 0; font-weight: 500; font-size: 15px; }
+.rw b { flex: none; font-weight: 600; font-size: 14px; color: #c4b5fd; font-variant-numeric: tabular-nums; }
 .facts { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 9px; color: var(--gray-2); font-size: 15px; line-height: 1.45; }
 .facts li { display: grid; grid-template-columns: 18px 1fr; }
 .facts li::before { content: ""; width: 6px; height: 6px; margin-top: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
@@ -217,21 +227,21 @@ section { scroll-margin-top: 72px; }
       <a href="#install">Как поставить</a>
       <a href="https://aliveenjoyer.art/">Все проекты</a>
     </nav>
-    <a class="btn solid" href="https://github.com/aliveenjoyer/now-playing/releases/latest/download/NowPlaying.zip">Скачать</a>
+    <a class="btn solid" href="https://github.com/aliveenjoyer/encore/releases/latest/download/Encore.zip">Скачать</a>
   </div>
 </header>
 
 <main class="wrap">
   <section class="hero" aria-labelledby="h1">
     <div>
-      <p class="eyebrow">Плашка для OBS и автопауза под заказы</p>
+      <p class="eyebrow">Заказы за баллы, плашка для OBS и автопауза</p>
       <h1 id="h1">Музыка сама знает, когда помолчать.</h1>
-      <p class="sub">Показывает на стриме, что сейчас играет, и ставит твою музыку на паузу, пока звучит заказ зрителя. Поставил один раз и забыл.</p>
+      <p class="sub">Зрители заказывают треки за баллы канала, плашка показывает, что играет, а твоя музыка встаёт на паузу, пока звучит заказ. Поставил один раз и забыл.</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/aliveenjoyer/now-playing/releases/latest/download/NowPlaying.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Скачать бесплатно</a>
-        <a class="btn" href="#styles">Посмотреть стили</a>
+        <a class="btn solid" href="https://github.com/aliveenjoyer/encore/releases/latest/download/Encore.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Скачать бесплатно</a>
+        <a class="btn" href="#orders">Как работают заказы</a>
       </div>
-      <ul class="chips"><li>Бесплатно</li><li>Windows 10 и 11</li><li>Меньше 1 МБ</li><li>Версия <span data-release="aliveenjoyer/now-playing">1.3.0</span></li></ul>
+      <ul class="chips"><li>Бесплатно</li><li>Windows 10 и 11</li><li>Меньше 1 МБ</li><li>Версия <span data-release="aliveenjoyer/encore">1.4.0</span></li></ul>
     </div>
     <div class="art" aria-hidden="true">
       <img class="vinyl" src="assets/vinyl.webp" width="1000" height="1000" alt="">
@@ -255,24 +265,33 @@ section { scroll-margin-top: 72px; }
   <section class="block" id="orders" aria-labelledby="h-orders">
     <div class="head">
       <h2 id="h-orders">Зритель заказал трек. Твоя музыка подождёт.</h2>
-      <p>Никаких двух песен поверх друг друга и ручных пауз посреди катки.</p>
+      <p>Заказы за баллы канала прямо в Encore или через Trula. Никаких двух песен поверх друг друга и ручных пауз посреди катки.</p>
     </div>
     <div class="split">
       <div class="tile flow">
         <ol class="steps">
-          <li><div><b>Заказ пришёл</b><span>Зритель заказал трек в Trula. Твой YouTube Music, Spotify или любой плеер Windows встаёт на паузу сам.</span></div></li>
-          <li><div><b>Заказ на плашке</b><span>Название, кто заказал и сколько закинул. В том же стиле, что и твоя музыка.</span></div></li>
+          <li><div><b>Заказ пришёл</b><span>Зритель заказал трек за баллы канала или в Trula. Твой YouTube Music, Spotify или любой плеер Windows встаёт на паузу сам.</span></div></li>
+          <li><div><b>Заказ на плашке</b><span>Название, кто заказал и сколько отдал: баллы или рубли. В том же стиле, что и твоя музыка.</span></div></li>
           <li><div><b>Музыка вернулась</b><span>Трек доиграл, и твоя музыка продолжается с того же места. Через 2, 3 или 5 секунд, как скажешь.</span></div></li>
         </ol>
+        <figure class="onbar">
+          <img src="assets/bars/points-future.webp" width="1080" height="140" alt="Плашка в стиле «Футуризм»: «Выхода нет» от sashawaify, 50 баллов" loading="lazy">
+          <figcaption>Заказ за баллы на плашке, стиль «Футуризм»</figcaption>
+        </figure>
       </div>
-      <div class="tile soon">
-        <span class="badge">Скоро</span>
+      <div class="tile points">
+        <span class="badge">Новое</span>
         <h3>Заказ треков за баллы канала</h3>
-        <p>Без Trula и без донатов. Encore сама заводит на Twitch награду «Заказать трек»: зритель пишет название или кидает ссылку, трек играет прямо из Encore.</p>
+        <p>Без Trula и без донатов. Подключаешь Twitch, и Encore сама заводит на канале две награды. Треки играют прямо из Encore, через источник в OBS.</p>
+        <div class="rewards" aria-label="Награды на канале">
+          <div class="rw"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></i><span>Заказать трек</span><b>50 баллов</b></div>
+          <div class="rw"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5l9 7-9 7z"/><path d="M19 5v14"/></svg></i><span>Пропустить трек</span><b>250 баллов</b></div>
+        </div>
         <ul class="facts">
-          <li>YouTube, YouTube Music, Spotify, SoundCloud или просто название</li>
-          <li>Ты задаёшь лимиты: длина трека, минимум просмотров, треков от одного зрителя</li>
-          <li>Не подошёл трек, и баллы вернутся сами</li>
+          <li>Зритель пишет название или кидает ссылку: YouTube, YouTube Music, Spotify, SoundCloud</li>
+          <li>Лимиты твои: длина трека, просмотры, сколько треков от одного зрителя, длина очереди и чёрный список слов</li>
+          <li>Баллы спишутся, когда трек заиграет. Не подошёл, убран из очереди или не сыграл, и баллы вернутся сами</li>
+          <li>Названия и цены наград меняешь в настройках</li>
         </ul>
       </div>
     </div>
@@ -281,12 +300,12 @@ section { scroll-margin-top: 72px; }
   <section class="block" id="settings" aria-labelledby="h-settings">
     <div class="head">
       <h2 id="h-settings">Все настройки на одном экране.</h2>
-      <p>Стиль, Trula, автопауза, говорящая вебка и обновления. Ничего не надо искать по вкладкам.</p>
+      <p>Стиль, заказы и очередь, автопауза, говорящая вебка и обновления. Ничего не надо искать по вкладкам.</p>
     </div>
-    <div class="tile shot"><img src="assets/settings.webp" width="1366" height="657" alt="Окно настроек Encore: предпросмотр плашки, стили, Trula, автопауза, вебка и система" loading="lazy"></div>
+    <div class="tile shot"><img src="assets/settings.webp" width="1366" height="657" alt="Окно настроек Encore: предпросмотр плашки с заказом за баллы, стили, заказы с очередью, автопауза, вебка и система" loading="lazy"></div>
     <ul class="trio">
       <li><b>Обновляется сама</b><span>Новая версия ставится в тишине между треками. Плашка в OBS перезагружается сама.</span></li>
-      <li><b>Всё на твоём компьютере</b><span>Работает на localhost. Токен Trula хранится только у тебя.</span></li>
+      <li><b>Всё на твоём компьютере</b><span>Работает на localhost. Вход в Twitch и токен Trula хранятся только у тебя.</span></li>
       <li><b>Бонус: говорящая вебка</b><span>Две картинки, и твой аватар открывает рот, когда ты говоришь.</span></li>
     </ul>
   </section>
@@ -297,15 +316,15 @@ section { scroll-margin-top: 72px; }
     </div>
     <div class="tile install">
       <ol class="steps">
-        <li><div><b>Скачай и запусти</b><span>Распакуй папку из архива целиком и запусти программу. Если Windows ругается, «Подробнее» → «Выполнить в любом случае».</span></div></li>
-        <li><div><b>Вставь ссылку Trula и выбери стиль</b><span>Настройки откроются сами. Ссылку на виджет «Заказ музыки» берёшь из OBS.</span></div></li>
-        <li><div><b>Добавь плашку в OBS</b><span>Источник «Браузер», ширина 720, высота 96:</span>
-          <span class="url"><code id="obsUrl">http://localhost:7790/bar</code><button class="copy" type="button" data-copy="obsUrl">Скопировать</button></span></div></li>
+        <li><div><b>Скачай и запусти</b><span>Распакуй папку Encore из архива целиком и запусти Encore.exe. Если Windows ругается, «Подробнее» → «Выполнить в любом случае».</span></div></li>
+        <li><div><b>Подключи Twitch и выбери стиль</b><span>Настройки откроются сами. В карточке «Заказы» нажми «Подключить» и введи код на twitch.tv/activate. Заказы идут через Trula? Вставь ссылку на её виджет во вкладке «Trula».</span></div></li>
+        <li><div><b>Добавь Encore в OBS</b><span>Источник «Браузер», ширина 720, высота 96, галочка «Управление аудио через OBS». В нём и плашка, и звук заказов:</span>
+          <span class="url"><code id="obsUrl">http://localhost:7790/player</code><button class="copy" type="button" data-copy="obsUrl">Скопировать</button></span></div></li>
       </ol>
       <div class="getit">
         <img src="assets/vinyl.webp" width="1000" height="1000" alt="" loading="lazy">
-        <a class="btn solid" href="https://github.com/aliveenjoyer/now-playing/releases/latest/download/NowPlaying.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Скачать бесплатно</a>
-        <small>Версия <span data-release="aliveenjoyer/now-playing">1.3.0</span> · <a href="https://github.com/aliveenjoyer/now-playing/releases">что нового</a></small>
+        <a class="btn solid" href="https://github.com/aliveenjoyer/encore/releases/latest/download/Encore.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Скачать бесплатно</a>
+        <small>Версия <span data-release="aliveenjoyer/encore">1.4.0</span> · <a href="https://github.com/aliveenjoyer/encore/releases">что нового</a></small>
       </div>
     </div>
   </section>
@@ -313,15 +332,15 @@ section { scroll-margin-top: 72px; }
 
 <footer class="wrap foot">
   <div class="foot-in">
-    <div><b>aliveenjoyer</b><p>Делаю программы для стрима: чат в игре, кнопки для зрителей, колесо хаоса и вот эту плашку.</p></div>
+    <div><b>aliveenjoyer</b><p>Делаю программы для стрима: чат в игре, кнопки для зрителей, колесо хаоса и Encore.</p></div>
     <div class="cta">
       <a class="btn" href="https://aliveenjoyer.art/">Все проекты</a>
       <a class="btn" href="https://www.donationalerts.com/r/aliveenjoyer">Поддержать</a>
     </div>
   </div>
   <div class="fine">
-    <span>Encore бесплатна, раньше называлась Now Playing. Trula, YouTube, Spotify, SoundCloud и OBS принадлежат своим владельцам, программа с ними не связана.</span>
-    <a href="https://github.com/aliveenjoyer/now-playing">GitHub</a>
+    <span>Encore бесплатна, раньше называлась Now Playing. Twitch, Trula, YouTube, Spotify, SoundCloud и OBS принадлежат своим владельцам, программа с ними не связана.</span>
+    <a href="https://github.com/aliveenjoyer/encore">GitHub</a>
   </div>
 </footer>
 
