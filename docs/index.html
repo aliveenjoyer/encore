@@ -285,7 +285,7 @@ section { scroll-margin-top: 72px; }
       <div class="tile points">
         <span class="badge">Новое</span>
         <h3>Заказ треков за баллы канала</h3>
-        <p>Без Trula и без донатов. Подключаешь Twitch, и Encore сама заводит на канале две награды. Треки играют прямо из Encore, через источник в OBS.</p>
+        <p>Без Trula и без донатов. Подключаешь Twitch в один клик, и Encore сама заводит на канале две награды. Треки играют прямо в плашке, звук идёт через OBS.</p>
         <div class="rewards" aria-label="Награды на канале">
           <div class="rw"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></i><span>Заказать трек</span><b>50 баллов</b></div>
           <div class="rw"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5l9 7-9 7z"/><path d="M19 5v14"/></svg></i><span>Пропустить трек</span><b>250 баллов</b></div>
@@ -294,6 +294,7 @@ section { scroll-margin-top: 72px; }
           <li>Зритель пишет название или кидает ссылку: YouTube, YouTube Music, Spotify, SoundCloud</li>
           <li>Лимиты твои: длина трека, просмотры, сколько треков от одного зрителя, длина очереди и чёрный список слов</li>
           <li>Баллы спишутся, когда трек заиграет. Не подошёл, убран из очереди или не сыграл, и баллы вернутся сами</li>
+          <li>Очередь, лента заказов, пауза и пропуск в панели прямо в OBS</li>
           <li>Названия и цены наград меняешь в настройках</li>
         </ul>
       </div>
@@ -303,7 +304,7 @@ section { scroll-margin-top: 72px; }
   <section class="block" id="settings" aria-labelledby="h-settings">
     <div class="head">
       <h2 id="h-settings">Все настройки на одном экране.</h2>
-      <p>Стиль, заказы и очередь, автопауза, говорящая вебка и обновления. Ничего не надо искать по вкладкам.</p>
+      <p>Стиль, заказы и очередь, автопауза, говорящая вебка и обновления. Ничего не надо искать по вкладкам, а очередь заказов есть ещё и в панели прямо в OBS.</p>
     </div>
     <div class="tile shot"><img src="assets/settings.webp" width="1366" height="657" alt="Окно настроек Encore: предпросмотр плашки с заказом за баллы, стили, заказы с очередью, автопауза, вебка и система" loading="lazy"></div>
     <ul class="trio">
@@ -320,11 +321,11 @@ section { scroll-margin-top: 72px; }
     <div class="tile install">
       <ol class="steps">
         <li><div><b>Скачай и запусти</b><span>Распакуй папку Encore из архива целиком и запусти Encore.exe. Если Windows ругается, «Подробнее» → «Выполнить в любом случае».</span></div></li>
-        <li><div><b>Подключи Twitch и выбери стиль</b><span>Настройки откроются сами. В карточке «Заказы» нажми «Подключить» и введи код на twitch.tv/activate. Заказы идут через Trula? Вставь ссылку на её виджет во вкладке «Trula».</span></div></li>
-        <li><div><b>Добавь Encore в OBS</b><span>Два источника «Браузер». Плашка, ширина 720, высота 96:</span>
-          <span class="url"><code id="obsUrl">http://localhost:7790/bar</code><button class="copy" type="button" data-copy="obsUrl">Скопировать</button></span>
-          <span class="next">Музыка заказов за баллы: 720&nbsp;×&nbsp;300, галочка «Управление аудио через OBS». Сдвинь этот источник за край кадра, как виджет Trula:</span>
-          <span class="url"><code id="playerUrl">http://localhost:7790/player</code><button class="copy" type="button" data-copy="playerUrl">Скопировать</button></span></div></li>
+        <li><div><b>Подключи Twitch и выбери стиль</b><span>Настройки откроются сами. В карточке «Заказы» нажми «Подключить»: откроется Twitch с уже вписанным кодом, останется нажать «Активировать». Заказы идут через Trula? Вставь ссылку на её виджет во вкладке «Trula».</span></div></li>
+        <li><div><b>Добавь Encore в OBS</b><span>Один источник «Браузер» (Browser): ширина 720, высота 296, галочка «Управление аудио через OBS» (Control audio via OBS).</span>
+          <span class="url"><code id="obsUrl">http://localhost:7790/player</code><button class="copy" type="button" data-copy="obsUrl">Скопировать</button></span>
+          <span class="next">Потом Ctrl+E и «Обрезать снизу» (Crop, Bottom): 200. Там плеер заказов, на стриме видна только плашка. Панель с очередью: «Док-панели» → «Пользовательские док-панели браузера» (Docks → Custom Browser Docks).</span>
+          <span class="url"><code id="dockUrl">http://localhost:7790/dock</code><button class="copy" type="button" data-copy="dockUrl">Скопировать</button></span></div></li>
       </ol>
       <div class="getit">
         <img src="assets/vinyl.webp" width="1000" height="1000" alt="" loading="lazy">
