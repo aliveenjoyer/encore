@@ -183,6 +183,14 @@ section { scroll-margin-top: 72px; }
 .facts li::before { content: ""; width: 6px; height: 6px; margin-top: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
 @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
 
+/* the OBS dock */
+.dockrow { margin-top: 32px; padding: clamp(24px, 3.5vw, 48px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 32px 56px; align-items: center; }
+.dockrow .facts { margin-top: 0; gap: 12px; font-size: 16px; }
+.dockrow .how { margin: 24px 0 0; color: var(--gray-2); font-size: 15px; line-height: 1.45; }
+.dock-shot { margin: 0; justify-self: center; width: 100%; max-width: 340px; }
+.dock-shot img { width: 100%; border-radius: 18px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0, 0, 0, .55); }
+@media (max-width: 860px) { .dockrow { grid-template-columns: 1fr; } }
+
 /* settings */
 .shot { margin-top: 32px; padding: clamp(14px, 2.5vw, 26px); }
 .shot img { border-radius: 16px; border: 1px solid var(--line); width: 100%; }
@@ -196,7 +204,7 @@ section { scroll-margin-top: 72px; }
 /* install */
 .install { margin-top: 32px; padding: clamp(24px, 3.5vw, 40px); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: center; }
 .install .steps { gap: 20px; }
-.steps .url { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; padding: 6px 6px 6px 12px; border-radius: 12px; background: rgba(255, 255, 255, .06); border: 1px solid var(--line); }
+.steps .url, .dockrow .url { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; padding: 6px 6px 6px 12px; border-radius: 12px; background: rgba(255, 255, 255, .06); border: 1px solid var(--line); }
 .url code { color: var(--text); }
 .steps .next { margin-top: 14px; }
 .copy { appearance: none; border: 0; cursor: pointer; font-size: 12.5px; font-weight: 500; padding: 4px 10px; border-radius: 8px; background: rgba(255, 255, 255, .1); color: var(--text); }
@@ -206,7 +214,7 @@ section { scroll-margin-top: 72px; }
 .getit small { color: var(--gray); font-size: 13px; }
 @media (max-width: 860px) { .install { grid-template-columns: 1fr; } }
 /* a phone does not set up OBS: no copy button, and the longest address still fits */
-@media (max-width: 520px) { .copy { display: none; } .steps .url { padding-right: 12px; max-width: 100%; } .url code { font-size: 13px; overflow-wrap: anywhere; } }
+@media (max-width: 520px) { .copy { display: none; } .steps .url, .dockrow .url { padding-right: 12px; max-width: 100%; } .url code { font-size: 13px; overflow-wrap: anywhere; } }
 
 /* footer */
 .foot { margin-top: clamp(96px, 16vh, 160px); padding-bottom: 36px; }
@@ -294,10 +302,30 @@ section { scroll-margin-top: 72px; }
           <li>Зритель пишет название или кидает ссылку: YouTube, YouTube Music, Spotify, SoundCloud</li>
           <li>Лимиты твои: длина трека, просмотры, сколько треков от одного зрителя, длина очереди и чёрный список слов</li>
           <li>Баллы спишутся, когда трек заиграет. Не подошёл, убран из очереди или не сыграл, и баллы вернутся сами</li>
-          <li>Очередь, лента заказов, пауза и пропуск в панели прямо в OBS</li>
           <li>Названия и цены наград меняешь в настройках</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="block" id="dock" aria-labelledby="h-dock">
+    <div class="head">
+      <h2 id="h-dock">Заказы под рукой, прямо в&nbsp;OBS.</h2>
+      <p>Панель Encore встаёт в OBS рядом с чатом. Видно, что играет, кто что заказал и что ждёт в очереди.</p>
+    </div>
+    <div class="tile dockrow">
+      <div>
+        <ul class="facts">
+          <li>Убрал трек из очереди, и зрителю вернутся баллы</li>
+          <li>Пауза и пропуск трека, который играет</li>
+          <li>Лента прошлых заказов: что сыграло и что не подошло</li>
+          <li>Добавить трек самому, включить или выключить приём заказов</li>
+          <li>Статус Twitch и шестерёнка, которая открывает настройки</li>
+        </ul>
+        <p class="how">«Док-панели» → «Пользовательские док-панели браузера» (Docks → Custom Browser Docks), адрес:</p>
+        <span class="url"><code id="dockUrl2">http://localhost:7790/dock</code><button class="copy" type="button" data-copy="dockUrl2">Скопировать</button></span>
+      </div>
+      <figure class="dock-shot"><img src="assets/dock.webp" width="760" height="1040" alt="Панель Encore в OBS: очередь из двух треков, лента сыгранных заказов и трек, который играет, с паузой и пропуском" loading="lazy"></figure>
     </div>
   </section>
 
