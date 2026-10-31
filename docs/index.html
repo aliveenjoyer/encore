@@ -162,7 +162,7 @@ section { scroll-margin-top: 72px; }
 .onbar img { width: 100%; max-width: 480px; filter: drop-shadow(0 12px 30px rgba(0, 0, 0, .6)); }
 .onbar figcaption { margin-top: 12px; font-size: 13px; color: var(--gray); }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; counter-reset: s; }
-.steps li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; }
+.steps li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; align-items: start; }
 .steps li::before { counter-increment: s; content: counter(s); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
   font-weight: 600; color: var(--pink); background: rgba(255, 126, 182, .1); border: 1px solid rgba(255, 126, 182, .3); }
 .steps b { display: block; font-weight: 600; font-size: 17px; letter-spacing: -.01em; }
@@ -198,12 +198,15 @@ section { scroll-margin-top: 72px; }
 .install .steps { gap: 20px; }
 .steps .url { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; padding: 6px 6px 6px 12px; border-radius: 12px; background: rgba(255, 255, 255, .06); border: 1px solid var(--line); }
 .url code { color: var(--text); }
+.steps .next { margin-top: 14px; }
 .copy { appearance: none; border: 0; cursor: pointer; font-size: 12.5px; font-weight: 500; padding: 4px 10px; border-radius: 8px; background: rgba(255, 255, 255, .1); color: var(--text); }
 .copy:hover { background: rgba(255, 255, 255, .18); }
 .getit { display: grid; justify-items: center; gap: 12px; text-align: center; }
 .getit img { width: 150px; mix-blend-mode: screen; }
 .getit small { color: var(--gray); font-size: 13px; }
 @media (max-width: 860px) { .install { grid-template-columns: 1fr; } }
+/* a phone does not set up OBS: no copy button, and the longest address still fits */
+@media (max-width: 520px) { .copy { display: none; } .steps .url { padding-right: 12px; max-width: 100%; } .url code { font-size: 13px; overflow-wrap: anywhere; } }
 
 /* footer */
 .foot { margin-top: clamp(96px, 16vh, 160px); padding-bottom: 36px; }
@@ -241,7 +244,7 @@ section { scroll-margin-top: 72px; }
         <a class="btn solid" href="https://github.com/aliveenjoyer/encore/releases/latest/download/Encore.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Скачать бесплатно</a>
         <a class="btn" href="#orders">Как работают заказы</a>
       </div>
-      <ul class="chips"><li>Бесплатно</li><li>Windows 10 и 11</li><li>Меньше 1 МБ</li><li>Версия <span data-release="aliveenjoyer/encore">1.4.0</span></li></ul>
+      <ul class="chips"><li>Бесплатно</li><li>Windows 10 и 11</li><li>Меньше 1 МБ</li><li>Версия <span data-release="aliveenjoyer/encore">1.4.1</span></li></ul>
     </div>
     <div class="art" aria-hidden="true">
       <img class="vinyl" src="assets/vinyl.webp" width="1000" height="1000" alt="">
@@ -318,13 +321,15 @@ section { scroll-margin-top: 72px; }
       <ol class="steps">
         <li><div><b>Скачай и запусти</b><span>Распакуй папку Encore из архива целиком и запусти Encore.exe. Если Windows ругается, «Подробнее» → «Выполнить в любом случае».</span></div></li>
         <li><div><b>Подключи Twitch и выбери стиль</b><span>Настройки откроются сами. В карточке «Заказы» нажми «Подключить» и введи код на twitch.tv/activate. Заказы идут через Trula? Вставь ссылку на её виджет во вкладке «Trula».</span></div></li>
-        <li><div><b>Добавь Encore в OBS</b><span>Источник «Браузер», ширина 720, высота 96, галочка «Управление аудио через OBS». В нём и плашка, и звук заказов:</span>
-          <span class="url"><code id="obsUrl">http://localhost:7790/player</code><button class="copy" type="button" data-copy="obsUrl">Скопировать</button></span></div></li>
+        <li><div><b>Добавь Encore в OBS</b><span>Два источника «Браузер». Плашка, ширина 720, высота 96:</span>
+          <span class="url"><code id="obsUrl">http://localhost:7790/bar</code><button class="copy" type="button" data-copy="obsUrl">Скопировать</button></span>
+          <span class="next">Музыка заказов за баллы: 720&nbsp;×&nbsp;300, галочка «Управление аудио через OBS». Сдвинь этот источник за край кадра, как виджет Trula:</span>
+          <span class="url"><code id="playerUrl">http://localhost:7790/player</code><button class="copy" type="button" data-copy="playerUrl">Скопировать</button></span></div></li>
       </ol>
       <div class="getit">
         <img src="assets/vinyl.webp" width="1000" height="1000" alt="" loading="lazy">
         <a class="btn solid" href="https://github.com/aliveenjoyer/encore/releases/latest/download/Encore.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Скачать бесплатно</a>
-        <small>Версия <span data-release="aliveenjoyer/encore">1.4.0</span> · <a href="https://github.com/aliveenjoyer/encore/releases">что нового</a></small>
+        <small>Версия <span data-release="aliveenjoyer/encore">1.4.1</span> · <a href="https://github.com/aliveenjoyer/encore/releases">что нового</a></small>
       </div>
     </div>
   </section>
