@@ -236,6 +236,7 @@ section { scroll-margin-top: 72px; }
       <a href="#orders">Заказы</a>
       <a href="#settings">Настройки</a>
       <a href="#install">Как поставить</a>
+      <a href="#obs">Советы по OBS</a>
       <a href="https://aliveenjoyer.art/">Все проекты</a>
     </nav>
     <a class="btn solid" href="https://github.com/aliveenjoyer/encore/releases/latest/download/Encore.zip">Скачать</a>
@@ -320,14 +321,15 @@ section { scroll-margin-top: 72px; }
           <li>⛔ рядом с треком: трек убирается, а этот зритель 10 минут не может заказывать. Баллы за мусор не вернутся</li>
           <li>Кто в тайм-ауте, видно над очередью, крестик снимает раньше. Время меняешь в настройках</li>
           <li>Убрал трек из очереди крестиком, и зрителю вернутся баллы</li>
-          <li>Пауза и пропуск трека, который играет, лента прошлых заказов</li>
+          <li>Пауза, пропуск и перемотка трека, который играет. Пауза и для твоей музыки, когда заказов нет</li>
+          <li>Лента прошлых заказов: «В очередь» ставит понравившийся трек ещё раз</li>
           <li>Добавить трек самому, включить или выключить приём заказов</li>
           <li>Шестерёнка открывает все настройки прямо в панели</li>
         </ul>
         <p class="how">«Док-панели» → «Пользовательские док-панели браузера» (Docks → Custom Browser Docks), адрес:</p>
         <span class="url"><code id="dockUrl2">http://localhost:7790/dock</code><button class="copy" type="button" data-copy="dockUrl2">Скопировать</button></span>
       </div>
-      <figure class="dock-shot"><img src="assets/dock.webp" width="760" height="1200" alt="Панель Encore в OBS: трек, который играет, и два в очереди, у каждого кнопка «⛔ 10 мин»; зритель troll_228 в тайм-ауте, его заказ Crazy Frog убран; внизу пауза, пропуск и ⛔" loading="lazy"></figure>
+      <figure class="dock-shot"><img src="assets/dock.webp" width="760" height="1200" alt="Панель Encore в OBS: трек, который играет, и два в очереди, у каждого кнопка «⛔ 10 мин»; зритель troll_228 в тайм-ауте, его заказ Crazy Frog убран; у сыгранного трека в ленте кнопка «В очередь»; внизу пауза, пропуск, ⛔ и полоса перемотки" loading="lazy"></figure>
     </div>
   </section>
 
@@ -360,9 +362,24 @@ section { scroll-margin-top: 72px; }
       <div class="getit">
         <img src="assets/vinyl.webp" width="1000" height="1000" alt="" loading="lazy">
         <a class="btn solid" href="https://github.com/aliveenjoyer/encore/releases/latest/download/Encore.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Скачать бесплатно</a>
-        <small>Версия <span data-release="aliveenjoyer/encore">1.4.1</span> · <a href="https://github.com/aliveenjoyer/encore/releases">что нового</a></small>
+        <small>Версия <span data-release="aliveenjoyer/encore">1.5.7</span> · <a href="https://github.com/aliveenjoyer/encore/releases">что нового</a></small>
       </div>
     </div>
+  </section>
+
+  <section class="block" id="obs" aria-labelledby="h-obs">
+    <div class="head">
+      <h2 id="h-obs">Настрой OBS, и&nbsp;игра не&nbsp;просядет.</h2>
+      <p>Самому Encore на заказ хватает пары десятков миллисекунд. Тяжело бывает браузеру OBS, когда он запускает видео YouTube. Поэтому с версии 1.5.7 плеер грузится заранее, когда OBS открывает источник, а не посреди игры. Если в момент заказа FPS всё равно проседает, проверь это:</p>
+    </div>
+    <ul class="trio">
+      <li><b>Ускорение браузера</b><span>«Настройки» → «Расширенные» → блок «Источники» → «Включить аппаратное ускорение для источника „Браузер“» (Settings → Advanced → Sources → Enable Browser Source Hardware Acceleration), потом перезапусти OBS. Без него видео YouTube считает процессор.</span></li>
+      <li><b>Кодировщик видеокарты</b><span>«Настройки» → «Вывод» → «Кодировщик видео»: NVIDIA NVENC, AMD или QuickSync вместо «Программный (x264)» (Settings → Output → Video Encoder). Процессор остаётся игре.</span></li>
+      <li><b>30 кадров у Encore</b><span>В свойствах источника Encore включи «Использовать настраиваемую частоту кадров» и поставь 30 (Use custom frame rate). Плашке больше не нужно.</span></li>
+      <li><b>Не выгружать источник</b><span>Там же сними «Отключать источник, когда не видим» и «Обновить браузер, когда сцена становится активной» (Shutdown source when not visible, Refresh browser when scene becomes active). Иначе плеер YouTube грузится заново после каждой смены сцены.</span></li>
+      <li><b>Запас для игры</b><span>Ограничь FPS в самой игре чуть ниже того, что она выдаёт. Если видеокарта загружена на 99&nbsp;%, любая работа OBS отнимает кадры и у игры, и у стрима.</span></li>
+      <li><b>Где смотреть</b><span>«Вид» → «Статистика» (View → Stats). Растёт «Пропуск кадров (рендеринг)» — не хватает видеокарты, «Пропуск кадров (кодирование)» — процессора или кодировщика.</span></li>
+    </ul>
   </section>
 </main>
 
