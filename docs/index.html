@@ -68,7 +68,11 @@ main.wrap { overflow-x: clip; }
 .nav a:not(.brand):not(.btn) { color: rgba(245, 245, 247, .78); transition: color .2s; }
 .nav a:not(.brand):not(.btn):hover { color: var(--text); }
 .nav .btn { min-height: 30px; padding: 0 14px; font-size: 13px; }
-@media (max-width: 760px) { .nav-links { display: none; } .nav .brand small { display: none; } }
+/* Telegram, донат, Twitch: стили в aliveenjoyer.art/social.css; в шапке с разделами места мало, поэтому кружки со значками */
+.nav .ae-soc { gap: 8px; }
+@media (max-width: 1100px) { .nav .brand small { display: none; } .nav-in, .nav-links { gap: 18px; } }
+@media (max-width: 960px) { .nav-links { display: none; } }
+@media (max-width: 760px) { .nav-links { display: none; } .nav .brand small { display: none; } .nav-in { gap: 12px; } }
 
 /* buttons, chips */
 .cta { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -225,6 +229,7 @@ section { scroll-margin-top: 72px; }
 .fine a { text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) { .js .art .vinyl.in { animation: none; } .live img, .stage .bar img { transition: none; } }
 </style>
+<link rel="stylesheet" href="https://aliveenjoyer.art/social.css">
 <script src="https://aliveenjoyer.art/stat.js" data-page="encore" defer></script>
 </head>
 <body>
@@ -240,6 +245,11 @@ section { scroll-margin-top: 72px; }
       <a href="#obs">Советы по OBS</a>
       <a href="https://aliveenjoyer.art/">Все проекты</a>
     </nav>
+    <div class="ae-soc is-icons" role="group" aria-label="Канал aliveenjoyer">
+      <a class="ae-b ae-tg" href="https://t.me/aliveenjoyer" aria-label="Telegram-канал" title="Telegram-канал"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 3.3 2.7 10.5c-1.1.4-1.1 1.1-.1 1.4l4.7 1.5 1.8 5.6c.2.7.4.8.9.8.4 0 .6-.2.9-.5l2.4-2.3 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.6Zm-3.2 3.9-8.6 7.8-.4 3.4-1.3-4.2 9.8-6.6c.5-.3.8 0 .5.4Z"/></svg><span class="ae-l">Telegram-канал</span><span class="ae-s">Telegram</span><span class="ae-m">ТГК</span></a>
+      <a class="ae-b ae-da" href="https://www.donationalerts.com/r/aliveenjoyer" aria-label="Закинуть донат" title="Закинуть донат"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.2-4.4-9.4-9.1C1 8.5 3.2 4.6 7 4.6c2.2 0 3.8 1.2 5 2.9 1.2-1.7 2.8-2.9 5-2.9 3.8 0 6 3.9 4.4 7.3C19.2 16.6 12 21 12 21Z"/></svg><span class="ae-l">Закинуть донат</span><span class="ae-s">Донат</span><span class="ae-m">Донат</span></a>
+      <a class="ae-b ae-tw" href="https://twitch.tv/aliveenjoyer" aria-label="Twitch: смотреть стрим" title="Twitch: смотреть стрим"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 2.5 3 6.6v13.6h4.6v2.5h2.6l2.5-2.5h3.7l5.1-5.1V2.5H4.6Zm14.9 11.6-2.9 2.9H12l-2.5 2.5V17H5.7V4.2h13.8v9.9ZM16.6 7.3h-1.8v5.2h1.8V7.3Zm-4.8 0H10v5.2h1.8V7.3Z"/></svg><span class="ae-l">Смотреть стрим</span><span class="ae-s">Twitch</span><span class="ae-m">Twitch</span></a>
+    </div>
     <a class="btn solid" href="https://github.com/aliveenjoyer/encore/releases/latest/download/Encore.zip">Скачать</a>
   </div>
 </header>
